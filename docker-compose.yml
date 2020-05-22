@@ -1,0 +1,61 @@
+version: "3"
+
+# NOTE This compose file is meant to be run under a POSIX environment and as such treats volumes thus.
+# If this does not work, please feel free to change that.
+# ----------------------------------------------------------------------------------------------------------------------
+# !!! These services are just meant to make your setup easier, _and in no way suggest that you have to use them_ !!!
+# You are free to remove the ones you do not need (and you will likely not need all of them), but the `backend`
+# and the `client` services must remain to run the app.
+services:
+  postgres:
+    image: "postgres:12.3-alpine"
+    # This only exposes the port to the containers and _not_ to your host machine.
+    # If you want to expose the port, use `ports` like in the `backend` and `client` below.
+    expose:
+      - 5432
+    volumes:
+      - "./.docker-data/postgres:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_PASSWORD: take_home
+      POSTGRES_USER: take_home
+      POSTGRES_DB: take_home
+  redis:
+    image: "redis:6.0.3-alpine"
+    # This only exposes the port to the containers and _not_ to your host machine.
+    # If you want to expose the port, use `ports` like in the `backend` and `client` below.
+    expose:
+      - 6379
+    volumes:
+      - "./.docker-data/redis:/data"
+  mongo:
+    image: "mongo:4.2.6"
+    expose:
+      - 27017
+    volumes:
+      - "./.docker-data/mongo:/data/db"
+  # App ----------------------------------------------------------------------------------------------------------------
+  backend:
+    build: backend/
+    volumes:
+      - "./backend:/code"
+    # host_port_that_your_OS_sees:port_your_container_exposes.
+    ports:
+      - "${BACKEND_HOST_PORT}:${BACKEND_CONTAINER_PORT}"
+    depends_on: # !!! NOTE Remove this if you remove the respective services
+      - postgres
+      - mongo
+      - redis
+    command: "./docker.start.sh"
+  client:
+    build: client/
+    volumes:
+      - "./client:/code"
+    # host_port_that_your_OS_sees:port_your_container_exposes
+    ports:
+      - "${CLIENT_HOST_PORT}:${CLIENT_CONTAINER_PORT}"
+    stdin_open: true # react native bug, needs this open
+    command: "./docker.start.sh"
+  # Assignment test suite ----------------------------------------------------------------------------------------------
+  tests:
+    build: tests/Dockerfile
+    command: "./docker.start.sh"
