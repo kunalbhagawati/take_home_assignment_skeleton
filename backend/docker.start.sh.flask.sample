@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# This is your start script.
+# This should contain the same set of commands that you would use every time you deploy the app to production.
+
+# You are in /code inside the container
+
+pip install -r requirements.txt
+
+FLASK_APP=src.app:app FLASK_ENV=development FLASK_DEBUG=1 flask run --host=0.0.0.0
