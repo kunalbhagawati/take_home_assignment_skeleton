@@ -1,0 +1,57 @@
+version: "3"
+
+# NOTE This compose file is meant to be run under a POSIX environment and as such treats volumes thus.
+# If this does not work, please feel free to change that.
+# ----------------------------------------------------------------------------------------------------------------------
+# !!! These services are just meant to make your setup easier, _and in no way suggest that you have to use them_ !!!
+# You are free to remove the ones you do not need (and you will likely not need all of them), but the `backend`
+# and the `client` services must remain to run the app.
+services:
+  postgres:
+    image: "postgres:12.3-alpine"
+    expose:
+      - 5432
+    volumes:
+      - "./.docker-data/postgres:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_PASSWORD: take_home
+      POSTGRES_USER: take_home
+      POSTGRES_DB: take_home
+  redis:
+    image: "redis:6.0.3-alpine"
+    expose:
+      - 6379
+    volumes:
+      - "./.docker-data/redis:/data"
+  mongo:
+    image: "mongo:4.2.6"
+    expose:
+      - 27017
+    volumes:
+      - "./.docker-data/mongo:/data/db"
+  # App ----------------------------------------------------------------------------------------------------------------
+  backend:
+    build: backend/
+    volumes:
+      - "./backend:/code"
+    ports:
+      # host_port:your_app_server_port. Host port must be 3000 to make functional_tests pass.
+      # If you need to change it, change it in the functional_tests as well.
+      - "3000:3000"
+    depends_on: # !!! NOTE Remove this if you remove the respective services
+      - postgres
+      - mongo
+      - redis
+    command: "./docker.start.sh"
+  client:
+    build: client/
+    volumes:
+      - "./client:/code"
+    ports:
+      - "3001:3000"
+    stdin_open: true # react native bug, needs this open
+    command: "./docker.start.sh"
+  # Assignment test suite ----------------------------------------------------------------------------------------------
+  tests:
+    build: tests/Dockerfile
+    command: "./docker.start.sh"
