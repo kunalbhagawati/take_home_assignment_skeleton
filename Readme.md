@@ -354,7 +354,7 @@ Some useful commands here:
 - **You can 100% disregard the docker stuff here, and just assume your code will run in a local environment.**
     - Put your code in the respective directories.  
     If your framework does not allow you to create a new project on a non-empty directory (e.g create-react-app), create a new folder `app` inside the respective directory and use that. 
-    - **Your code must pass our functional tests though**, and they expect you to expose the `backend` and `client` on ports `3000` and `3001` respectively by default.  
+    - **Your code must pass our functional tests though**, and they expect you to expose the `backend` and `client` on the ports defined in the top level `.env` file.  
 
 - If for whatever reasons you absolutely cannot use these ports, feel free to change them on our `.env` file at the top level.  
 Docker and our tests pick up from there.
