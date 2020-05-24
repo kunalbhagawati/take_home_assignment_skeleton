@@ -23,23 +23,23 @@ jeans and shirt.
 
 **Inventory**
 For now, we can go with a very simple definition of inventory. It as an object in your data store that has:
-  - a **"kind" or "type"** or some such to identify what kind of item it is a part of.   
+  - a way to identify what kind of item it is a part of.  
   Here "jeans" and "shirt" are two different kinds of things
-    - Some way to identify characteristics unique to all items of a particular kind.  
-    You might have different materials for jeans. Or you might have different styles and colours for shirts.
-    - a label that helps identify the kind. i.e "Shirt" is a label.
+  - Some way to identify characteristics unique to all items of a particular kind.  
+  You might have different materials for jeans. Or you might have different styles and colours for shirts.
+  
   - a way to say how this item is **linked to a `container`.**
-  - a **"batch"** or something similar to say how many copies of the same inventory exist i.e the factory would have created a bunch of these and shipped them together to your warehouse. 
+  - a way to say how many copies of the same inventory exist i.e the factory would have created a bunch of these and shipped them together to your warehouse. 
 
 **Container**
 Think of two squares, one inside the other. That is basically it. The outer square is a container than can hold another container (the inner square).
 Each such square can hold either inventory (shirts, jeans, etc) or other containers.
 
-That said, containers do have some other properties:
-- a **"kind"**, that says what kind of container it is.  
-  - a **label** or some such to identify the kind. e.g "rack" is a label for all rack type of containers.
-  - a way to say certain kinds of containers can store only other containers, and certain kinds can store only inventory. e.g 'racks' can store only other containers, but 'paper bags' can store inventory (chains).  
-  Yes, even a paper bag is a container. :)
+Containers have:
+- a way to identify what kind of container it is.  
+- a way to say certain kinds of containers can store only other containers, and certain kinds can store only inventory.  
+e.g 'racks' can store only other containers, but 'paper bags' can store inventory (chains).  
+Yes, even a paper bag is a container. :)
 - A container must have a **barcode** to help identify it.  
 e.g. "rack" is be the type of the container, but "073500538500xx" is the barcode of that specific container.
 - containers can have infinite depth in theory i.e container inside container inside container inside ...  You system should be able to handle this possibility.
@@ -49,7 +49,7 @@ But practically they will have a maximum depth of 10 in 99% of the cases.
 Backend:
 - We should be able to add new "containers".  
 - Containers can hold other containers.
-- If a container can hold other containers, it should not be able to hold inventory i.e. **either a container can hold other containers inside or it can hold inventory**.
+- If a container can hold other containers, it should not be able to hold inventory i.e. **at any given moment, a container can either hold other containers inside or it can hold inventory**.
 - We can delete a container **if it does not hold any inventory or containers** i.e it is empty.
 - We can move a container to another container **if the other container is empty, or is holding another container only (it does not hold inventory).**.
 - We can move move inventory to another container **if the other container is empty, or it's holding other inventory only**.
