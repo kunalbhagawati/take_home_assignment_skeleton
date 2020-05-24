@@ -105,7 +105,7 @@ See below for generic 5xx error format
 #### API to add a new container.
 
 **Request**  
-`POST /api/containers`
+`POST /containers`
 ```json5
 {
   "label": "string",
@@ -150,7 +150,7 @@ Multiple errors here just for reference. Sending back one error at a time is com
 #### API to add container/inventory inside another container.
 
 **Request**  
-`PUT /api/containers/:container_id/add`
+`PUT /containers/:container_id/add`
 ```json5
 {
   "data": {
@@ -188,7 +188,7 @@ Failure (4xx)
 
 #### API to show container information and all containers and inventory inside them in a nested manner.
 **Request**  
-`GET /api/containers/:container_id/`
+`GET /containers/:container_id/`
 
 Taking the example above: \[Warehouse_1] -> \[Rack_1] -> \[Box_1] -> \(Inventory_1)
 
@@ -236,8 +236,8 @@ Taking the example above: \[Warehouse_1] -> \[Rack_1] -> \[Box_1] -> \(Inventory
 
 #### API to show top level container for inventory or container
 **Request**  
-`GET /api/containers/:container_id/root`
-`GET /api/inventory/:inventory_id/root`
+`GET /containers/:container_id/root`
+`GET /inventory/:inventory_id/root`
 
 Taking the example above: \[Warehouse_1] -> \[Rack_1] -> \[Box_1] -> \(Inventory_1)
 
@@ -259,7 +259,7 @@ Similar for `Inventory_1`
 #### API to delete a container.  
 
 **Request**  
-`DELETE /api/containers/:container_id/`
+`DELETE /containers/:container_id/`
 
 **Response**  
 Success (2xx)  

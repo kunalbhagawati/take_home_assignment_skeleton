@@ -16,9 +16,9 @@ services:
     volumes:
       - "./.docker-data/postgres:/var/lib/postgresql/data"
     environment:
-      POSTGRES_PASSWORD: take_home
-      POSTGRES_USER: take_home
-      POSTGRES_DB: take_home
+      POSTGRES_PASSWORD: ${POSTGRES_DB_NAME}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_DB: ${POSTGRES_DB_NAME}
   redis:
     image: "redis:6.0.3-alpine"
     # This only exposes the port to the containers and _not_ to your host machine.
