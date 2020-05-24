@@ -8,4 +8,4 @@
 pip install -r requirements.txt
 
 # Add your `rails s` or `./manage.py runserver` or such command here.
-FLASK_ENV=development FLASK_DEBUG=1 flask run
+FLASK_APP=src.app:app FLASK_ENV=development FLASK_DEBUG=1 flask run --host=0.0.0.0

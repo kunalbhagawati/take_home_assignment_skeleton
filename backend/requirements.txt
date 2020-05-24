@@ -1,4 +1,12 @@
 ipython
 
-Flask
+psycopg2-binary
 SQLAlchemy
+sqlalchemy-utils
+
+Flask
+webargs
+Flask-SQLAlchemy
+Flask-Migrate
+
+flask-classful
