@@ -6,5 +6,6 @@
 
 # You are in /code inside the container
 
-cd app || exit
-yarn start --watch
+# set up your dependencies
+
+# Start your app
