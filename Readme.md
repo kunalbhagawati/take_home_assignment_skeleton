@@ -354,10 +354,12 @@ Some useful commands here:
 - **You can 100% disregard the docker stuff here, and just assume your code will run in a local environment.**
     - Put your code in the respective directories.  
     If your framework does not allow you to create a new project on a non-empty directory (e.g create-react-app), create a new folder `app` inside the respective directory and use that. 
-    - **Your code must pass our functional tests though**, and they expect you to expose the `backend` and `client` on ports `3000` and `3001` respectively.  
-    If for whatever reasons you absolutely cannot use these ports, feel free to change them on our `docker-compose.yml` and `tests/config.py` files.
-    Please do run the test docker command below to run them.
+    - **Your code must pass our functional tests though**, and they expect you to expose the `backend` and `client` on ports `3000` and `3001` respectively by default.  
 
-- Please don't add files you would not want to bundle with the assignment. We have added .gitignore files in both the `backend` and `client` directories but you should add to them if required.
+- If for whatever reasons you absolutely cannot use these ports, feel free to change them on our `.env` file at the top level.  
+Docker and our tests pick up from there.
+
+- Please don't add files you would not want to bundle with the assignment.  
+We have added `.gitignore` files in both the `backend` and `client` directories but you should add to them if required.
 
 - You can use any admin panel such as https://marmelab.com/react-admin/ or roll your own. All we expect is a basic UI to hit the APIs and present the information.

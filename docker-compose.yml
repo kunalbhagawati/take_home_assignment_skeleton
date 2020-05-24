@@ -9,6 +9,8 @@ version: "3"
 services:
   postgres:
     image: "postgres:12.3-alpine"
+    # This only exposes the port to the containers and _not_ to your host machine.
+    # If you want to expose the port, use `ports` like in the `backend` and `client` below.
     expose:
       - 5432
     volumes:
@@ -19,6 +21,8 @@ services:
       POSTGRES_DB: take_home
   redis:
     image: "redis:6.0.3-alpine"
+    # This only exposes the port to the containers and _not_ to your host machine.
+    # If you want to expose the port, use `ports` like in the `backend` and `client` below.
     expose:
       - 6379
     volumes:
@@ -34,10 +38,9 @@ services:
     build: backend/
     volumes:
       - "./backend:/code"
+    # host_port_that_your_OS_sees:port_your_container_exposes.
     ports:
-      # host_port:your_app_server_port. Host port must be 3000 to make functional_tests pass.
-      # If you need to change it, change it in the functional_tests as well.
-      - "3000:3000"
+      - "${BACKEND_HOST_PORT}:${BACKEND_CONTAINER_PORT}"
     depends_on: # !!! NOTE Remove this if you remove the respective services
       - postgres
       - mongo
@@ -47,8 +50,9 @@ services:
     build: client/
     volumes:
       - "./client:/code"
+    # host_port_that_your_OS_sees:port_your_container_exposes
     ports:
-      - "3001:3000"
+      - "${CLIENT_HOST_PORT}:${CLIENT_CONTAINER_PORT}"
     stdin_open: true # react native bug, needs this open
     command: "./docker.start.sh"
   # Assignment test suite ----------------------------------------------------------------------------------------------
