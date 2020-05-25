@@ -5,9 +5,10 @@ They explain the problem, it's functional requirements, and notes/constraints to
 
 Please explain your design choices in the given `design-choices.md` document.
 
-If you are unfamiliar with docker, see the file `docker-basics-and-commands.md`. 
-It gives a basic idea of docker, how we structured the folders in this assignment and a few commands, should you use docker. 
 NOTE: **You can 100% ignore the docker stuff here, and just run your code in your local environment. This is just to help you isolate your project's dependencies and environment.**  
+
+If you are unfamiliar with docker, see the file `docker-basics.md`. The docker commands relevant to this assignment are in `docker-commands.md`.  
+It gives a basic idea of docker, how we structured the folders in this assignment and a few commands, should you use docker. 
 
 More details in "Things to keep in mind" section below. Please go through it to help us evaluate your code faster. :)   
 

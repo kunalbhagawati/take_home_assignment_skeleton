@@ -71,9 +71,20 @@ In our docker-compose file we have this:
 Here, the redis container will expose port 6379 to the backend container.
 
 # Docker design in this assignment.
+We have 2 directories: `backend` and `client`.
+Both of them have 3 main files:
+- `Dockerfile`  
+Pulls in a base docker image of your choosing and adds the ability to execute `docker.bootstrap.sh` and `docker.start.sh` on top of it.  
+Also creates a `/code` directory and sets it as the default path in your container.  
+Volumes are not mounted yet, so any file you want to access, should be copied to the build process using `ADD` or `COPY` directives.
 
+- `docker.bootstrap.sh`
+Empty shell script left to you to fill up. This should reflect what you would do when you spin up an empty linux based server the first time.
+**It ideally should not contain those commands which you want to execute every time you'd deploy.**
+Everything you do here is part of the final state of the image after the build process. This of this is adding another layer of commands and artifacts to the final image.
 
-
-# Docker commands
-- `docker-compose up postgres redis mongo`  
-Spins up postgres, redis and mongo if you need them. Ports are not exposed to the host machine.
+- `docker.start.sh`
+Runs every time the container is created or spins up. Note the word "container" here and not "image". 
+This is basically you `pip install` or `npm install` etc.
+The last command should be a **continuously running command**.  
+Docker containers will die if it does not run a continuously running process. Usually this will be something like `rails server` or `npm start`. 
