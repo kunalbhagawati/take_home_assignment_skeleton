@@ -55,7 +55,3 @@ services:
       - "${CLIENT_HOST_PORT}:${CLIENT_CONTAINER_PORT}"
     stdin_open: true # react native bug, needs this open
     command: "./docker.start.sh"
-  # Assignment test suite ----------------------------------------------------------------------------------------------
-  tests:
-    build: tests/Dockerfile
-    command: "./docker.start.sh"
