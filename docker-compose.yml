@@ -5,7 +5,9 @@ version: "3"
 # ----------------------------------------------------------------------------------------------------------------------
 # !!! These services are just meant to make your setup easier, _and in no way suggest that you have to use them_ !!!
 # You are free to remove the ones you do not need (and you will likely not need all of them), but the `backend`
-# and the `client` services must remain to run the app.
+# service must remain to run the app.
+#
+# All ${VARIABLES} are taken from the top .env file in this directory.
 services:
   postgres:
     image: "postgres:12.3-alpine"
