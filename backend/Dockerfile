@@ -14,7 +14,7 @@ RUN chmod +x /docker.start.sh
 
 # Run any additional steps right now. This is like if you had to configure a blank linux based server for the first time.
 # Check the image above to see what extra it does, so you may not have to.
-# For example, the `python:3.8.3` image installs python for you.
+# For example, the `python:3.8.3` image installs python 3.8 for you.
 RUN /docker.bootstrap.sh
 
 WORKDIR /code
