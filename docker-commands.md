@@ -8,6 +8,11 @@ Spins up the backend and the client. Exposes ports to the host machine
 - `docker-compose build <service_name>`
 Builds the container for <service_name> from the image, but does not run it. Handled automatically by `docker-compose up`.
 
+- `docker-compose run --rm <service_name> <command>`
+- `docker-compose run --rm backend bash`
+Runs the <command> inside **a** container for <service_name> from the image. **This does not run on your existing container, but creates a new one**.  
+`--rm` removes this newly created container after you exit it. If you do not pass this flag, the container will still be up. 
+
 - `docker-compose stop <service_name>`
 Stops all containers for <service_name> from the image (`SIGTERM` failing which `SIGKILL`).
 
