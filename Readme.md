@@ -17,7 +17,9 @@ Please see the section [Making this candidate ready](#making-this-candidate-read
 - `client`: UI. Exposed as a service in docker-compose.
 
 # Making this candidate ready
-- Run the 
+- Run the `./build.sh` script in your terminal:   
+    `./build.sh`
+- Modify the `problem.md` file to define your problem. 
 
 # Docker design in this assignment
 We have 2 directories: `backend` and `client`.
