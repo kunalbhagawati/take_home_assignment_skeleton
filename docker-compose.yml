@@ -2,11 +2,13 @@ version: "3"
 
 # NOTE This compose file is meant to be run under a POSIX environment and as such treats volumes thus.
 # If this does not work, please feel free to change that.
+
 # ----------------------------------------------------------------------------------------------------------------------
+
 # !!! These services are just meant to make your setup easier, _and in no way suggest that you have to use them_ !!!
 # You are free to remove the ones you do not need (and you will likely not need all of them), but the `backend`
-# service must remain to run the app.
-#
+# service must remain to run the app (client is optional).
+
 # All ${VARIABLES} are taken from the top .env file in this directory.
 services:
   postgres:

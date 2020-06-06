@@ -18,7 +18,7 @@ Please see the section [Making this candidate ready](#making-this-candidate-read
 
 # Making this candidate ready
 - Modify the `problem.md` file to define your problem. 
-- Change any of the other files here.
+- Change any of the other files here (you might want to change `docker-compose.yml`, it metions the `client` is optional and only the backend is neccessary).
 
 - Run the `./build.sh` script in your terminal:   
     `./build.sh`  

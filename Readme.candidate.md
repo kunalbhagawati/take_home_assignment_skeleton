@@ -1,5 +1,3 @@
-A simple test harness for take home assignments.
-
 Please go through `problem.md` to understand the problem.
 
 Please explain your design choices in the given `design-choices.md` document.
@@ -9,6 +7,8 @@ If you are unfamiliar with docker, see the file `docker-basics.md`. The docker c
 It gives a basic idea of docker, how the folders in this assignment are structured and a few commands, should you use docker. 
 
 # Things to keep in mind.
+- **Please do not put up your code a public repositiory.**
+
 - Put your code in the respective directories.  
 If your framework does not allow you to create a new project on a non-empty directory (e.g create-react-app), create a new folder `app` inside the respective directory and use that. 
 
